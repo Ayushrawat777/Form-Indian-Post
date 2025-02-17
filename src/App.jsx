@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-
+import { ClipLoader } from "react-spinners"; 
 const App = () => {
   const [pincode, setPincode] = useState("");
   const [filter, setFilter] = useState("");
   const [userInfo, setUserInfo] = useState([]);
   const [key, setKey] = useState(false);
   const [error, setError] = useState(""); // ✅ Error state
-
+  const [isLoading, setIsLoading] = useState(false); 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
-    setUserInfo([]); // Reset previous data
+    if (pincode.length !== 6 || isNaN(pincode)) {
+      setError("Pincode must be exactly 6 digits.");
+      setUserInfo([]); // Clear previous results
+      return;
+    }
 
+    setIsLoading(true);
+    setError("");
+    setUserInfo([]); // Reset previous data
     try {
       const response = await axios.get(
         `https://api.postalpincode.in/pincode/${pincode}`
@@ -28,6 +34,8 @@ const App = () => {
       }
     } catch (err) {
       setError("Something went wrong! Please try again.");
+    }finally {
+      setIsLoading(false); // ✅ Stop loader
     }
   };
 
@@ -54,8 +62,13 @@ const App = () => {
           {error && <p className="error-message">{error}</p>}
         </>
       )}
-
-      {key && userInfo.length > 0 && (
+ {isLoading && ( // ✅ Show Loader
+        <div className="loader">
+          <ClipLoader color="#3498db" size={50} />
+          <p>Fetching Data...</p>
+        </div>
+      )}
+      {key && !isLoading && (
         <div className="box-data">
           <div className="box-data-con">
             <div className="box-detail">
@@ -93,7 +106,7 @@ const App = () => {
                 </div>
               ))
             ) : (
-              <p>No matching post offices found.</p>
+              <p>Couldn’t find the postal data you’re looking for…</p>
             )}
           </div>
         </div>
