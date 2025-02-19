@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Form-Indian-Post/static/css/main.efcb4f79.css",
-    "main.js": "/Form-Indian-Post/static/js/main.0a65ec1e.js",
-    "index.html": "/Form-Indian-Post/index.html",
-    "main.efcb4f79.css.map": "/Form-Indian-Post/static/css/main.efcb4f79.css.map",
-    "main.0a65ec1e.js.map": "/Form-Indian-Post/static/js/main.0a65ec1e.js.map"
+    "main.css": "/Movie-App/static/css/main.05c55f7e.css",
+    "main.js": "/Movie-App/static/js/main.3d22057a.js",
+    "index.html": "/Movie-App/index.html",
+    "main.05c55f7e.css.map": "/Movie-App/static/css/main.05c55f7e.css.map",
+    "main.3d22057a.js.map": "/Movie-App/static/js/main.3d22057a.js.map"
   },
   "entrypoints": [
-    "static/css/main.efcb4f79.css",
-    "static/js/main.0a65ec1e.js"
+    "static/css/main.05c55f7e.css",
+    "static/js/main.3d22057a.js"
   ]
 }
